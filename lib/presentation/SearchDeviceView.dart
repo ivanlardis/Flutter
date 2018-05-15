@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/presentation/SearchView.dart';
 
 
 
@@ -15,7 +16,7 @@ class SearchDeviceViewState extends State<SearchDeviceView> {
 
   @override
   Widget build(BuildContext context) {
-    return new Text("SearchDeviceView");
+    return new SearchView();
   }
 
 

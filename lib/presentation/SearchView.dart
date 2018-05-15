@@ -53,7 +53,9 @@ class SearchState extends State<SearchView> {
         padding: new EdgeInsets.all(8.0),
         itemExtent: 20.0,
         itemBuilder: (BuildContext context, int index) {
-          return new Text('entry  '+_scanResults[index].bleDevice.name);
+          return new Text('id  '+_scanResults[index].bleDevice.id+" "
+          +_scanResults[index].bleDevice.name
+          );
         },
       ),
 //
