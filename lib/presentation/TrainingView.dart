@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/domain/BussinesFormul.dart';
 import 'package:flutter_app/presentation/TrainingPresenter.dart';
 
 
@@ -11,8 +12,9 @@ class TrainingView extends StatefulWidget {
 class TrainingViewState extends State<TrainingView> implements ITrainingView {
   TrainingPresenter presenter;
 
-  TrainingModel trainingModel = new TrainingModel();
+  ModelTimer trainingModel = new ModelTimer();
   int index = 0;
+  Color color = Colors.white;
 
 
   @override
@@ -30,25 +32,26 @@ class TrainingViewState extends State<TrainingView> implements ITrainingView {
         new IconButton(
           icon: new Icon(Icons.trending_up),
           onPressed: () {
-            presenter.stopTrain();
+            presenter.startTrain();
           },
         ),
         new IconButton(
           icon: new Icon(Icons.trending_down),
           onPressed: () {
-            presenter.startTrain();
+            presenter.stopTrain();
           },
         ),
       ],),
         body: new Container(
+          color: color,
           child: new Column(
 
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              new Text("ТИП ${trainingModel.type}",
+              new Text("ТИП ${getTextByType(trainingModel.type)}",
                 style: new TextStyle(fontWeight: FontWeight.bold,
                     fontSize: 24.0),),
-              new Text("${trainingModel.time}",
+              new Text("${trainingModel.timeSec}",
                 style: new TextStyle(fontWeight: FontWeight.bold,
                     fontSize: 56.0),
 
@@ -56,16 +59,16 @@ class TrainingViewState extends State<TrainingView> implements ITrainingView {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  new Text("СЕТЫ ${trainingModel.set}",
+                  new Text("СЕТЫ ${trainingModel.setCount}",
                     style: new TextStyle(fontWeight: FontWeight.bold,
                         fontSize: 24.0),),
-                  new Text("ЦИКЛЫ ${trainingModel.cycle}",
+                  new Text("ЦИКЛЫ ${trainingModel.cycleCount}",
                     style: new TextStyle(fontWeight: FontWeight.bold,
                         fontSize: 24.0),),
 
                 ],),
             ],),
-          margin: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
         )
 
 
@@ -73,11 +76,54 @@ class TrainingViewState extends State<TrainingView> implements ITrainingView {
   }
 
   @override
-  void show(TrainingModel model) {
-    print("show ${model.set}");
+  void show(ModelTimer model) {
+    print("show ${model.setCount}");
     setState(() {
       trainingModel = model;
+      color = getColorByType(trainingModel.type);
     });
+  }
+
+  String getTextByType(TYPE type) {
+    switch (type) {
+      case TYPE.PREPARATION_TIME:
+        return "ПОДГОТОВКА";
+        break;
+      case TYPE.REST_BETWEEN_SETS_COUNT:
+        return "ОТДЫХ МЕЖДУ СЕТАМИ";
+        break;
+      case TYPE.WORK_TIME:
+        return "РАБОТА";
+        break;
+      case TYPE.REST_TIME:
+        return "ОТДЫХ";
+        break;
+      case TYPE.EMPTY:
+        return "Начать тренировку?";
+        break;
+    }
+    return "";
+  }
+
+  Color getColorByType(TYPE type) {
+    switch (type) {
+      case TYPE.PREPARATION_TIME:
+        return Colors.green;
+        break;
+      case TYPE.REST_BETWEEN_SETS_COUNT:
+        return Colors.grey;
+        break;
+      case TYPE.WORK_TIME:
+        return Colors.red;
+        break;
+      case TYPE.REST_TIME:
+        return Colors.blue;
+        break;
+      case TYPE.EMPTY:
+        return Colors.white;
+        break;
+    }
+    return Colors.white;
   }
 
 }

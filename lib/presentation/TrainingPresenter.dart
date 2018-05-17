@@ -1,66 +1,50 @@
+import 'dart:async';
 
+import 'package:flutter_app/domain/BussinesFormul.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 abstract class ITrainingView {
-void show(TrainingModel model);
+  void show(ModelTimer model);
 }
 
-class TrainingPresenter{
+class TrainingPresenter {
 
 
-  ITrainingView  iTrainingView;
+  ITrainingView iTrainingView;
+
   TrainingPresenter(this.iTrainingView);
 
+  StreamSubscription subscription;
 
-  void startTrain(){
-
-    print("startTrain ");
-    var a=new TrainingModel();
-    a.set=34;
-    iTrainingView.show(a);
+  void startTrain() {
+    SharedPreferences.getInstance().asStream()
+        .listen((shar) => calculate(shar));
   }
 
-  void stopTrain(){
+  void calculate(SharedPreferences prefs) {
+    stopTrain();
+    List<ModelTimer> list = getListTrain(prefs);
+    print("list length" + list.length.toString());
+    subscription = new Observable<ModelTimer>.fromIterable(list)
+        .interval(new Duration(seconds: 1))
+        .listen((modelTimer) =>
+        iTrainingView.show(modelTimer)); // prints 1 sec, 2 sec, 3 sec
+  }
+
+  void stopTrain() {
+    if (subscription != null) {
+      subscription.cancel();
+      subscription = null;
+    }
+
     print("stopTrain ");
-    var a=new TrainingModel();
-    a.set=4;
+    var a = new ModelTimer();
+
     iTrainingView.show(a);
-
   }
 
 
 }
 
-class TrainingModel{
-  int _set=0;
-  String _type="";
-  int _cycle=0;
-  int _time=0;
-
-  int get set => _set;
-
-  set set(int value) {
-    _set = value;
-  }
-
-
-  String get type => _type;
-
-  set type(String value) {
-    _type = value;
-  }
-
-  int get cycle => _cycle;
-
-  set cycle(int value) {
-    _cycle = value;
-  }
-
-  int get time => _time;
-
-  set time(int value) {
-    _time = value;
-  }
-
-
-}

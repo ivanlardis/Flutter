@@ -10,7 +10,7 @@ dependencies:
   cupertino_icons: ^0.1.0
   flutter_ble_lib: "^1.0.0"
   shared_preferences: "^0.4.1"
-
+  rxdart: "^0.16.7"
 dev_dependencies:
   flutter_test:
     sdk: flutter
