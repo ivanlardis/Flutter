@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_app/domain/BussinesFormul.dart';
+import 'package:flutter_app/presentation/Models.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

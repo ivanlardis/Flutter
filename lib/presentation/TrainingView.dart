@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/domain/BussinesFormul.dart';
+import 'package:flutter_app/presentation/Models.dart';
 import 'package:flutter_app/presentation/TrainingPresenter.dart';
 
 

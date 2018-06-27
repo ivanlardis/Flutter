@@ -1,34 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter_app/presentation/Models.dart';
 import 'package:flutter_app/utils/Prefs.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ModelTimer {
 
 
-  int timeSec = 0;
-  TYPE type = TYPE.EMPTY;
-  TIME_INTERVAL timeInterval = TIME_INTERVAL.NORMAL;
-  int setCount = 0;
-  int cycleCount = 0;
-
-}
-
-
-enum TIME_INTERVAL {
-  START,
-  END,
-  NORMAL
-}
-
-enum TYPE {
-  EMPTY,
-  PREPARATION_TIME,
-  WORK_TIME,
-  REST_TIME,
-  REST_BETWEEN_SETS_COUNT
-}
 
 
 List<ModelTimer> getListTrain(SharedPreferences prefs) {

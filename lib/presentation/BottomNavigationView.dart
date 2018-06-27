@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/presentation/SearchDeviceView.dart';
-import 'package:flutter_app/presentation/SearchView.dart';
+import 'package:flutter_app/presentation/HistoryView.dart';
+
 import 'package:flutter_app/presentation/SettingView.dart';
 import 'package:flutter_app/presentation/TrainingView.dart';
-import 'package:flutter_ble_lib/flutter_ble_lib.dart';
+
 
 
 class BottomNavigationView extends StatefulWidget {
@@ -13,7 +13,7 @@ class BottomNavigationView extends StatefulWidget {
 
 class BottomNavigationViewState extends State<BottomNavigationView> {
 
-  int index = 0;
+  int index = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -70,18 +70,6 @@ class BottomNavigationViewState extends State<BottomNavigationView> {
 
 
   void _openSearchView() {
-    FlutterBleLib.instance.createClient(null).then(
-            (data) =>
 
-
-            Navigator.of(context).push(
-              new MaterialPageRoute(
-                builder: (context) {
-                  return new SearchView();
-                },
-              ),
-            )
-
-    );
   }
 }
