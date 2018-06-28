@@ -7,9 +7,11 @@ class SearchDeviceView extends StatefulWidget {
   createState() => new SearchDeviceViewState();
 }
 
-class SearchDeviceViewState extends State<SearchDeviceView> implements IHistoryView {
-  List<ModelHistory> models=new List();
+class SearchDeviceViewState extends State<SearchDeviceView>
+    implements IHistoryView {
+  List<ModelHistory> models = new List();
   HistoryPresenter presenter;
+
   @override
   void initState() {
     super.initState();
@@ -29,15 +31,16 @@ class SearchDeviceViewState extends State<SearchDeviceView> implements IHistoryV
               presenter.startTrain();
             },
           ),
-
         ],
       ),
       body: new ListView.builder(
-
-        itemCount: models.length,
-        itemBuilder: (BuildContext context, int index) {
+        itemCount: models.length * 2,
+        itemBuilder: (BuildContext context, int i) {
+          if (i.isOdd) return new Divider();
+          final index = i ~/ 2;
           print("itemBuilder index $index models ${models[0].workTime}");
-          return new HistoryWidget(models[index]);
+          return new HistoryWidget(
+              Key("a ${models[index].workTime}"), models[index]);
         },
       ),
     );
@@ -45,33 +48,25 @@ class SearchDeviceViewState extends State<SearchDeviceView> implements IHistoryV
 
   @override
   void show(List<ModelHistory> model) {
-    print("show ${model[0].workTime}");
     this.setState(() {
-
-     this.models=model;
-
-   });
-
+      this.models = model;
+    });
   }
-
-
 }
 
 class HistoryWidget extends StatefulWidget {
+  ModelHistory _modelTimer;
 
-  ModelHistory modelTimer;
-
-  HistoryWidget(this.modelTimer);
+  HistoryWidget(Key key, this._modelTimer) : super(key: key);
 
   @override
-  createState() => new HistoryState(modelTimer);
+  createState() => new HistoryState(_modelTimer);
 }
 
 class HistoryState extends State<HistoryWidget> {
+  ModelHistory _modelTimer;
 
-  ModelHistory modelTimer;
-
-  HistoryState(this.modelTimer);
+  HistoryState(this._modelTimer);
 
   @override
   void initState() {
@@ -79,24 +74,26 @@ class HistoryState extends State<HistoryWidget> {
     super.initState();
     print("HistoryState initState");
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return new Table(
-
       children: <TableRow>[
         new TableRow(children: <Widget>[
-          new Text("userName ${modelTimer.userName}" ,style: TextStyle(fontSize: 24.0),),
-          new Text("time ${modelTimer.time}",style: TextStyle(fontSize: 24.0)),
-
-        ]), new TableRow(children: <Widget>[
-          new Text("restTime ${modelTimer.restTime}"),
-          new Text("workTime ${modelTimer.workTime}"),
-
-        ]), new TableRow(children: <Widget>[
-          new Text("cycleCount ${modelTimer.setCount}"),
-          new Text("cycleCount ${modelTimer.cycleCount}"),
-
+          new Text(
+            "userName ${_modelTimer.userName}",
+            style: TextStyle(fontSize: 24.0),
+          ),
+          new Text("time ${_modelTimer.time}",
+              style: TextStyle(fontSize: 24.0)),
+        ]),
+        new TableRow(children: <Widget>[
+          new Text("restTime ${_modelTimer.restTime}"),
+          new Text("workTime ${_modelTimer.workTime}"),
+        ]),
+        new TableRow(children: <Widget>[
+          new Text("cycleCount ${_modelTimer.setCount}"),
+          new Text("cycleCount ${_modelTimer.cycleCount}"),
         ]),
       ],
     );

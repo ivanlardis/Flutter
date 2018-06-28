@@ -6,49 +6,35 @@ import 'package:flutter_app/presentation/Models.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 abstract class IHistoryView {
   void show(List<ModelHistory> model);
 }
 
 class HistoryPresenter {
-
-
   IHistoryView iHistoryView;
 
   HistoryPresenter(this.iHistoryView);
 
-
   void startTrain() {
-print("awdwad");
+    print("startTrain");
     if (iHistoryView != null) {
       print("iHistoryView != null");
-      List<ModelHistory> models=new List();
-      ModelHistory history=new ModelHistory();
+      List<ModelHistory> models = new List();
 
-      history.workTime=new Random().nextInt(12);
-      history.restTime=7;
+      ModelHistory history = new ModelHistory();
 
-      history.time=2;
-      history.userName="ivan";
-      history.cycleCount=3;
+      history.workTime = new Random().nextInt(12);
+      history.restTime = 7;
 
-      models.add(history);
+      history.time = 2;
+      history.userName = "ivan";
+      history.cycleCount = 3;
 
-
+      for (var i = 0; i < new Random().nextInt(12); i++) {
+        models.add(history);
+      }
 
       iHistoryView.show(models);
     }
-
-
-
-
-
-
   }
-
-
-
-
 }
-
