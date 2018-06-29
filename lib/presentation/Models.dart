@@ -59,6 +59,15 @@ class ModelHistory   {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'time': time,
+    'workTime': workTime,
+    'setCount': setCount,
+    'restTime': restTime,
+    'cycleCount': cycleCount
+  };
+
 }
 
 

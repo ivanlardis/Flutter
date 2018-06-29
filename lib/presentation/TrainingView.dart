@@ -78,7 +78,7 @@ class TrainingViewState extends State<TrainingView> implements ITrainingView {
 
   @override
   void show(ModelTimer model) {
-    print("show ${model.setCount}");
+
     setState(() {
       trainingModel = model;
       color = getColorByType(trainingModel.type);

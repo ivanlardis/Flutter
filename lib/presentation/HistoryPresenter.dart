@@ -32,10 +32,12 @@ class HistoryPresenter {
 
   void startTrain() async {
 
-    List<ModelHistory> history=await NW.getData();
+    List<ModelHistory> history=await DB.getData();
 
 
     if (iHistoryView != null) {
+
+      print(" iHistoryView.show ${history.length}");
       iHistoryView.show(history);
     }
   }

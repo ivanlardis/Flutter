@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/presentation/HistoryPresenter.dart';
 import 'package:flutter_app/presentation/Models.dart';
+import 'package:date_format/date_format.dart';
+
 
 class SearchDeviceView extends StatefulWidget {
   @override
@@ -11,6 +13,11 @@ class SearchDeviceViewState extends State<SearchDeviceView>
     implements IHistoryView {
   List<ModelHistory> models = new List();
   HistoryPresenter presenter;
+
+  int getCount() {
+    if (models == null) return 0;
+    return models.length;
+  }
 
   @override
   void initState() {
@@ -34,11 +41,11 @@ class SearchDeviceViewState extends State<SearchDeviceView>
         ],
       ),
       body: new ListView.builder(
-        itemCount: models.length * 2,
+        itemCount: getCount() * 2,
         itemBuilder: (BuildContext context, int i) {
           if (i.isOdd) return new Divider();
           final index = i ~/ 2;
-          print("itemBuilder index $index models ${models[0].workTime}");
+
           return new HistoryWidget(
               Key("a ${models[index].workTime}"), models[index]);
         },
@@ -70,13 +77,15 @@ class HistoryState extends State<HistoryWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
-    print("HistoryState initState");
+
   }
 
   @override
   Widget build(BuildContext context) {
+
+
     return new Table(
       children: <TableRow>[
         new TableRow(children: <Widget>[
@@ -84,7 +93,9 @@ class HistoryState extends State<HistoryWidget> {
             "name ${_modelTimer.name}",
             style: TextStyle(fontSize: 24.0),
           ),
-          new Text("time ${_modelTimer.time}",
+          new Text("time ${formatDate(
+              DateTime.fromMillisecondsSinceEpoch(_modelTimer.time),
+          [ mm, '.', dd,' ',HH, ':', nn])}",
               style: TextStyle(fontSize: 24.0)),
         ]),
         new TableRow(children: <Widget>[

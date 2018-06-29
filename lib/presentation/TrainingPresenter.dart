@@ -30,7 +30,7 @@ class TrainingPresenter {
   void calculate(SharedPreferences prefs) {
     stopTrain();
     List<ModelTimer> list = getListTrain(prefs);
-    print("list length" + list.length.toString());
+
     subscription = new Observable<ModelTimer>.fromIterable(list)
         .interval(new Duration(seconds: 1))
         .listen((modelTimer) =>
@@ -43,7 +43,6 @@ class TrainingPresenter {
       subscription = null;
     }
 
-    print("stopTrain ");
     var a = new ModelTimer();
 
     iTrainingView.show(a);

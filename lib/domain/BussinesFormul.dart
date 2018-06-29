@@ -7,7 +7,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 List<ModelTimer> getListTrain(SharedPreferences prefs) {
-  String name = prefs.getString(Prefs.PREPARATION_TIME.toString()) ?? "qq";
+  String name = prefs.getString(Prefs.NAME.toString()) ?? "qq";
   int preparationTime = prefs.getInt(Prefs.PREPARATION_TIME.toString()) ?? 0;
   int setCount = prefs.getInt(Prefs.SET_COUNT.toString()) ?? 0;
   int cycleCount = prefs.getInt(Prefs.CYCLE_COUNT.toString()) ?? 0;
@@ -25,7 +25,8 @@ List<ModelTimer> getListTrain(SharedPreferences prefs) {
     time: new DateTime.now().millisecondsSinceEpoch,
   );
   DB.save(historyModel);
-  DB.get();
+  NW.save(historyModel);
+
   List<ModelTimer> trainList = new List();
 
   for (int currentPreparationTime = 1;
