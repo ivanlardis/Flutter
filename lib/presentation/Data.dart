@@ -85,6 +85,19 @@ class DB {
 
 class Repository {
 
+  static Future<List<ModelHistory>> getData() async {
+
+    List<ModelHistory> dbData= await  DB.getData();
+    print(dbData.length);
+    void iterateMapEntry(value) {
+    NW.save(value);
+    }
+    dbData.forEach(iterateMapEntry);
+
+ return NW.getData();
+
+  }
+
 }
 
 class NW {
@@ -101,13 +114,14 @@ class NW {
     map.forEach(iterateMapEntry);
     return models;
   }
-  static Future<http.Response> fetchPost() {
-    return http.get('https://timerble-8665b.firebaseio.com/messages.json');
 
-  }
 
   static Future<List<ModelHistory>> getData() async {
-    http.Response response = await fetchPost();
+
+
+
+
+    http.Response response = await http.get('https://timerble-8665b.firebaseio.com/messages.json');
     Map map = json.decode(response.body);
     List<ModelHistory> models = mapper(map);
 

@@ -35,10 +35,18 @@ class HistoryPresenter {
     List<ModelHistory> history=await DB.getData();
 
 
+
     if (iHistoryView != null) {
 
-      print(" iHistoryView.show ${history.length}");
       iHistoryView.show(history);
+    }
+
+
+    List<ModelHistory> network=await Repository.getData();
+
+    if (iHistoryView != null) {
+
+      iHistoryView.show(network);
     }
   }
 
