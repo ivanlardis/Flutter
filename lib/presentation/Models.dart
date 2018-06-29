@@ -12,12 +12,53 @@ class ModelTimer {
 }
 
 class ModelHistory   {
-  String userName = "";
+  String name = "";
   int time = 0;
   int workTime = 0;
   int setCount = 0;
   int restTime = 0;
   int cycleCount = 0;
+
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is ModelHistory &&
+              runtimeType == other.runtimeType &&
+              name == other.name &&
+              time == other.time &&
+              workTime == other.workTime &&
+              setCount == other.setCount &&
+              restTime == other.restTime &&
+              cycleCount == other.cycleCount;
+
+  @override
+  int get hashCode =>
+      name.hashCode ^
+      time.hashCode ^
+      workTime.hashCode ^
+      setCount.hashCode ^
+      restTime.hashCode ^
+      cycleCount.hashCode;
+
+  ModelHistory({this.name, this.time, this.workTime, this.setCount,
+      this.restTime, this.cycleCount});
+
+
+
+
+
+  factory ModelHistory.fromJson(Map<String, dynamic> json) {
+    return ModelHistory(
+      name: json['name'],
+      time: json['time'],
+      workTime: json['workTime'],
+      setCount: json['setCount'],
+      restTime: json['restTime'],
+      cycleCount: json['cycleCount']
+    );
+  }
+
 }
 
 

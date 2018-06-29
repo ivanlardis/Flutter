@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_app/domain/BussinesFormul.dart';
+import 'package:flutter_app/presentation/Data.dart';
 import 'package:flutter_app/presentation/Models.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,6 +21,8 @@ class TrainingPresenter {
   StreamSubscription subscription;
 
   void startTrain() {
+
+
     SharedPreferences.getInstance().asStream()
         .listen((shar) => calculate(shar));
   }

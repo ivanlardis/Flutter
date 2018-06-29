@@ -81,7 +81,7 @@ class HistoryState extends State<HistoryWidget> {
       children: <TableRow>[
         new TableRow(children: <Widget>[
           new Text(
-            "userName ${_modelTimer.userName}",
+            "name ${_modelTimer.name}",
             style: TextStyle(fontSize: 24.0),
           ),
           new Text("time ${_modelTimer.time}",
