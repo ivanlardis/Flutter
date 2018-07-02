@@ -6,14 +6,11 @@ import 'package:flutter_app/presentation/Models.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 abstract class ITrainingView {
   void show(ModelTimer model);
 }
 
 class TrainingPresenter {
-
-
   ITrainingView iTrainingView;
 
   TrainingPresenter(this.iTrainingView);
@@ -21,9 +18,10 @@ class TrainingPresenter {
   StreamSubscription subscription;
 
   void startTrain() {
-
-
-    SharedPreferences.getInstance().asStream()
+    print("startTrain");
+    SharedPreferences
+        .getInstance()
+        .asStream()
         .listen((shar) => calculate(shar));
   }
 
@@ -34,7 +32,7 @@ class TrainingPresenter {
     subscription = new Observable<ModelTimer>.fromIterable(list)
         .interval(new Duration(seconds: 1))
         .listen((modelTimer) =>
-        iTrainingView.show(modelTimer)); // prints 1 sec, 2 sec, 3 sec
+            iTrainingView.show(modelTimer)); // prints 1 sec, 2 sec, 3 sec
   }
 
   void stopTrain() {
@@ -47,7 +45,4 @@ class TrainingPresenter {
 
     iTrainingView.show(a);
   }
-
-
 }
-

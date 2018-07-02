@@ -3,11 +3,12 @@ import 'package:flutter_app/presentation/HistoryPresenter.dart';
 import 'package:flutter_app/presentation/Models.dart';
 import 'package:date_format/date_format.dart';
 
-
 class SearchDeviceView extends StatefulWidget {
   @override
   createState() => new SearchDeviceViewState();
 }
+
+
 
 class SearchDeviceViewState extends State<SearchDeviceView>
     implements IHistoryView {
@@ -77,15 +78,11 @@ class HistoryState extends State<HistoryWidget> {
 
   @override
   void initState() {
-
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
-
-
     return new Table(
       children: <TableRow>[
         new TableRow(children: <Widget>[
@@ -93,9 +90,10 @@ class HistoryState extends State<HistoryWidget> {
             "name ${_modelTimer.name}",
             style: TextStyle(fontSize: 24.0),
           ),
-          new Text("time ${formatDate(
-              DateTime.fromMillisecondsSinceEpoch(_modelTimer.time),
-          [ mm, '.', dd,' ',HH, ':', nn])}",
+          new Text(
+              "time ${formatDate(
+                  DateTime.fromMillisecondsSinceEpoch(_modelTimer.time),
+                  [ mm, '.', dd, ' ', HH, ':', nn])}",
               style: TextStyle(fontSize: 24.0)),
         ]),
         new TableRow(children: <Widget>[
@@ -110,3 +108,5 @@ class HistoryState extends State<HistoryWidget> {
     );
   }
 }
+
+

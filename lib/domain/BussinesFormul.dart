@@ -41,6 +41,7 @@ List<ModelTimer> getListTrain(SharedPreferences prefs) {
 
     ModelTimer modelTimer = new ModelTimer();
     modelTimer.type = TYPE.PREPARATION_TIME;
+    modelTimer.maxValue = preparationTime;
     modelTimer.timeSec = preparationTime + 1 - currentPreparationTime;
     modelTimer.timeInterval = timeInterval;
     trainList.add(modelTimer);
@@ -57,6 +58,7 @@ List<ModelTimer> getListTrain(SharedPreferences prefs) {
         }
         ModelTimer modelTimer = new ModelTimer();
         modelTimer.type = TYPE.WORK_TIME;
+        modelTimer.maxValue = workTime;
         modelTimer.timeSec = workTime + 1 - curWorkTime;
         modelTimer.timeInterval = timeInterval;
         modelTimer.cycleCount = curCycleCount;
@@ -73,6 +75,7 @@ List<ModelTimer> getListTrain(SharedPreferences prefs) {
         }
         ModelTimer modelTimer = new ModelTimer();
         modelTimer.type = TYPE.REST_TIME;
+        modelTimer.maxValue = restTime;
         modelTimer.timeSec = restTime + 1 - curRestTime;
         modelTimer.timeInterval = timeInterval;
         modelTimer.cycleCount = curCycleCount;
@@ -91,6 +94,7 @@ List<ModelTimer> getListTrain(SharedPreferences prefs) {
         timeInterval = TIME_INTERVAL.NORMAL;
       }
       ModelTimer modelTimer = new ModelTimer();
+      modelTimer.maxValue = restBetweenSetsCount;
       modelTimer.type = TYPE.REST_BETWEEN_SETS_COUNT;
       modelTimer.timeSec = restBetweenSetsCount + 1 - curBetweenTime;
       modelTimer.timeInterval = timeInterval;

@@ -13,7 +13,7 @@ class BottomNavigationView extends StatefulWidget {
 
 class BottomNavigationViewState extends State<BottomNavigationView> {
 
-  int index = 1;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
