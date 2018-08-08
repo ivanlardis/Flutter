@@ -51,7 +51,7 @@ class TrainingViewState extends State<TrainingView> implements ITrainingView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   new Text(
-                    "ТИП ${getTextByType(trainingModel.type)}",
+                    " ${getTextByType(trainingModel.type)}",
                     style: new TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 24.0),
                   ),
@@ -96,7 +96,7 @@ class TrainingViewState extends State<TrainingView> implements ITrainingView {
   void show(ModelTimer model) {
     setState(() {
       trainingModel = model;
-      color = getColorByType(trainingModel.type);
+//      color = getColorByType(trainingModel.type);
     });
   }
 

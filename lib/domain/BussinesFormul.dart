@@ -7,7 +7,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 List<ModelTimer> getListTrain(SharedPreferences prefs) {
-  String name = prefs.getString(Prefs.NAME.toString()) ?? "qq";
+  String name ="Flutter";
   int preparationTime = prefs.getInt(Prefs.PREPARATION_TIME.toString()) ?? 0;
   int setCount = prefs.getInt(Prefs.SET_COUNT.toString()) ?? 0;
   int cycleCount = prefs.getInt(Prefs.CYCLE_COUNT.toString()) ?? 0;

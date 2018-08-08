@@ -87,22 +87,22 @@ class HistoryState extends State<HistoryWidget> {
       children: <TableRow>[
         new TableRow(children: <Widget>[
           new Text(
-            "name ${_modelTimer.name}",
+            "имя ${_modelTimer.name}",
             style: TextStyle(fontSize: 24.0),
           ),
           new Text(
-              "time ${formatDate(
+              "${formatDate(
                   DateTime.fromMillisecondsSinceEpoch(_modelTimer.time),
                   [ mm, '.', dd, ' ', HH, ':', nn])}",
               style: TextStyle(fontSize: 24.0)),
         ]),
         new TableRow(children: <Widget>[
-          new Text("restTime ${_modelTimer.restTime}"),
-          new Text("workTime ${_modelTimer.workTime}"),
+          new Text("Время отдыха ${_modelTimer.restTime}"),
+          new Text("Время работы ${_modelTimer.workTime}"),
         ]),
         new TableRow(children: <Widget>[
-          new Text("cycleCount ${_modelTimer.setCount}"),
-          new Text("cycleCount ${_modelTimer.cycleCount}"),
+          new Text("Сеты ${_modelTimer.setCount}"),
+          new Text("Циклы ${_modelTimer.cycleCount}"),
         ]),
       ],
     );

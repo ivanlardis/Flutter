@@ -2,7 +2,6 @@
 
 enum Prefs{
 
-  NAME  ,
   PREPARATION_TIME  ,
 WORK_TIME ,
 REST_TIME  ,
