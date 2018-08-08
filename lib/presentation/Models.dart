@@ -68,6 +68,13 @@ class ModelHistory {
         'restTime': restTime,
         'cycleCount': cycleCount
       };
+
+  @override
+  String toString() {
+    return 'ModelHistory{name: $name, time: $time, workTime: $workTime, setCount: $setCount, restTime: $restTime, cycleCount: $cycleCount}';
+  }
+
+
 }
 
 enum TIME_INTERVAL { START, END, NORMAL }

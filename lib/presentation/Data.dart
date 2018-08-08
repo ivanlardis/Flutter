@@ -134,7 +134,8 @@ class NW {
 
   static void save(ModelHistory model) async {
 
-    http.post('https://timerble-8665b.firebaseio.com/messages.json',
+    http.put('https://timerble-8665b.firebaseio.com/messages/'+model.time.toString()
+        +'.json',
     body: json.encode(model.toJson())
     );
   }

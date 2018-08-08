@@ -8,13 +8,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 List<ModelTimer> getListTrain(SharedPreferences prefs) {
   String name ="Flutter";
-  int preparationTime = prefs.getInt(Prefs.PREPARATION_TIME.toString()) ?? 0;
-  int setCount = prefs.getInt(Prefs.SET_COUNT.toString()) ?? 0;
-  int cycleCount = prefs.getInt(Prefs.CYCLE_COUNT.toString()) ?? 0;
-  int workTime = prefs.getInt(Prefs.WORK_TIME.toString()) ?? 0;
-  int restTime = prefs.getInt(Prefs.REST_TIME.toString()) ?? 0;
+  int preparationTime = prefs.getInt(Prefs.PREPARATION_TIME.toString()) ?? 2;
+  int setCount = prefs.getInt(Prefs.SET_COUNT.toString()) ?? 2;
+  int cycleCount = prefs.getInt(Prefs.CYCLE_COUNT.toString()) ?? 2;
+  int workTime = prefs.getInt(Prefs.WORK_TIME.toString()) ?? 2;
+  int restTime = prefs.getInt(Prefs.REST_TIME.toString()) ?? 2;
   int restBetweenSetsCount =
-      prefs.getInt(Prefs.REST_BETWEEN_SETS_COUNT.toString()) ?? 0;
+      prefs.getInt(Prefs.REST_BETWEEN_SETS_COUNT.toString()) ?? 2;
 
   ModelHistory historyModel = new ModelHistory(
     name: name,
